@@ -1,0 +1,5 @@
+
+export(calSize)
+importFrom(Rcpp,evalCpp)
+useDynLib(RDSsamplesize)
+importFrom("stats", "runif")
