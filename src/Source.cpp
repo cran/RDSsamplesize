@@ -386,7 +386,7 @@ void sample_size_eval(vector<vector<At>>& Aall, vector<vector<Ft>>& Fall,
 
         Aall.push_back(Ak);
         Fall.push_back(Fk);
-        if ((Ak.size() == 0) | (Fk.size() == 0)){
+        if ((Ak.size() == 0) || (Fk.size() == 0)){
             Rcpp::Rcout<<"break ahead "<<Ak.size()<<" "<<Fk.size() ;
             break;
         }
@@ -410,10 +410,10 @@ List size(int n0, int m, int maxT, NumericVector p_list_vec, double tol){
     vector<double>P_tau_list = P_tau(m, n0, p_list, maxT);
     output(0)=P_tau_list;
 
-    for (int i = 0; i < Fall.size(); i++) {
+    for (unsigned int i = 0; i < Fall.size(); i++) {
       vector<Ft> F_n=Fall[i];
       NumericMatrix F_temp(F_n.size(),2);
-      for (int j = 0; j < F_n.size(); j++) {
+      for (unsigned int j = 0; j < F_n.size(); j++) {
         F_temp(j,0)=F_n[j].zk;
         F_temp(j,1)=F_n[j].pmf;
       }

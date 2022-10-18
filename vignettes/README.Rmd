@@ -1,5 +1,5 @@
 ---
-title: "RDS Sample Size Estimation and Power Calculation"
+title: "README"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{README}
