@@ -61,7 +61,7 @@ ggplot(info,aes(x=Size,y=CCDF))+
   theme(panel.grid.minor.y = element_blank(),
         legend.title = element_blank(),
         plot.title = element_text(hjust = 0.5))+
-  ggtitle('Pr( Accmulated sample size > n | k-th wave)')
+  ggtitle('Pr( Accmulated sample size (excluding seeds) > n | k-th wave)')
 
 
 

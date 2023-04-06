@@ -13,14 +13,14 @@ calSize(n0, m, maxT, p_list_vec, tol)
 
 \item{maxT}{Planned field period.}
 
-\item{p_list_vec}{A vector of recruitment rates.}
+\item{p_list_vec}{A vector of recruitment rates by each wave.}
 
 \item{tol}{Accuracy loss limit.}
 }
 \value{
 a list consisting of the following elements:
-\item{P_tau_list}{vector; a vector of extinction probability at each wave.}
-\item{Fk}{list; probability mass function of the accumulated sample size by each wave, k=1,...,maxT.}
+\item{Pr_Extinction_list}{vector; a vector of extinction probability, i.e., probability of recruiting none at each wave.}
+\item{Pr_Size_by_Wave_t}{list; probability mass function of the accumulated sample size (excluding seeds) by each wave, t=1,...,maxT.}
 }
 \description{
 Calculate the  accumulated sample size distribution by each wave.
