@@ -64,12 +64,11 @@ ggplot(P_tau,aes(x=Wave,y=CCDF))+
 
 
 ```{r,fig.width=7, fig.height=5, fig.align='center'}
-info<-data.frame(Wave=as.integer(),Zk=as.integer(),PMF=as.double())
+info<-data.frame(Wave=as.integer(),Zk=as.integer(),PMF=as.double(),CCDF=as.double())
 for (i in 1:maxT){
   info<-rbind(info,cbind(Wave=i,results[[i+1]]))
 }
-colnames(info)<-c('Wave','Size','PMF')
-info<-info%>%group_by(Wave)%>%mutate(CDF=cumsum(PMF),CCDF=1-CDF)
+colnames(info)<-c('Wave','Size','PMF','CCDF')
 
 ### CCDF of accumulated sample size 
 ggplot(info,aes(x=Size,y=CCDF))+
@@ -81,7 +80,7 @@ ggplot(info,aes(x=Size,y=CCDF))+
   theme(panel.grid.minor.y = element_blank(),
         legend.title = element_blank(),
         plot.title = element_text(hjust = 0.5))+
-  ggtitle('Pr( Accmulated sample size (excluding seeds) > n | k-th wave)')
+  ggtitle(TeX('Pr( Accmulated sample size (including seeds) $\\geq n | k$-th wave)'))
 
 
 

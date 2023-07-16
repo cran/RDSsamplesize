@@ -416,6 +416,7 @@ List size(int n0, int m, int maxT, NumericVector p_list_vec, double tol){
       F_temp(j,0)=F_n[j].zk;
       F_temp(j,1)=F_n[j].pmf;
     }
+
     output(i+1)=F_temp;
 
   }
