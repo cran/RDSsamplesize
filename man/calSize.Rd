@@ -2,30 +2,41 @@
 % Please edit documentation in R/main.R
 \name{calSize}
 \alias{calSize}
-\title{Calculate the  accumulated sample size distribution by each wave.}
+\title{Calculating the accumulated sample size distribution by each wave.}
 \usage{
-calSize(n0, m, maxT, p_list_vec, tol)
+calSize(s, c, maxWave, rr, bruteMC, tol = 0.025)
 }
 \arguments{
-\item{n0}{Number of seeds.}
+\item{s}{scalar; Number of seeds to initiate the sampling process.}
 
-\item{m}{Number of coupons issued to each participant.}
+\item{c}{scalar; Number of coupons issued to each participant.}
 
-\item{maxT}{Planned field period.}
+\item{maxWave}{scalar; Planned field period scaled by wave, which does not include the initial round of recruiting seeds.}
 
-\item{p_list_vec}{A vector of recruitment rates by each wave.}
+\item{rr}{scalar or vector; a (constant) recruitment rate or a vector of length \emph{maxWave}, listing varying recruitment rates at each wave.
+The recruitment rate represents the average coupon use rate. For example, if \emph{rr} is a vector,
+the \emph{w}th element is the ratio of the number of successful recruits brought into the study at wave \emph{w} by their recruiters (participants from wave \emph{w-1})
+to the total number of coupons issued to those recruiters, where \emph{w} ranges from 1 to \emph{maxWave}. Seeds are counted as participants at Wave 0.}
 
-\item{tol}{Accuracy loss limit.}
+\item{bruteMC}{logical; If TRUE then use a brute force Monte Carlo approach to obtain empirical data and estimate sample size distribution;
+If FALSE then compute the theoretical results of sample size distribution using an approximation algorithm.}
+
+\item{tol}{scalar; Accuracy loss limit control, which is set up for the approximation algorithm when \emph{bruteMC}=FALSE, with default of 0.025.
+This parameter determines the acceptable level of accuracy loss in the approximate computation of the sample size distribution.}
 }
 \value{
 a list consisting of the following elements:
-\item{Pr_Extinction_list}{vector; a vector of extinction probability, i.e., probability of recruiting none at each wave.}
-\item{Pr_Size_by_Wave_t}{list; probability mass function and complementary cumulative distribution function of the sample size (including seeds) by each wave, t=1,...,maxT.}
+\item{Pr_Extinction_list}{vector; a vector of extinction probabilities, i.e., probability of not recruiting any new participants at each wave.}
+\item{Pr_Size_by_Wave_w}{list; probability mass function and complementary cumulative distribution function of
+attaining a certain sample size (including seeds) by each wave, w=1,...,maxWave. The round of seed collection is counted as wave 0.}
 }
 \description{
-Calculate the  accumulated sample size distribution by each wave.
+Calculating the accumulated sample size distribution by each wave.
 }
 \examples{
-result <- calSize(n0=10,m=3,maxT=9,p_list_vec=rep(0.3,9),tol=0.005)
+x <- calSize(s=10,c=3,maxWave=9,rr=0.3,bruteMC=FALSE,tol=0.025)
 
+}
+\references{
+Raychaudhuri, Samik. \emph{Introduction to monte carlo simulation}, 2008 Winter simulation conference. IEEE, 2008.
 }

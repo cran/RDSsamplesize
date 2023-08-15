@@ -401,6 +401,9 @@ List size(int n0, int m, int maxT, NumericVector p_list_vec, double tol){
   //main function
   //read in p_list
   vector<double>p_list = as<vector<double>> (p_list_vec);
+  if((p_list_vec.size()==1)&(maxT>1))
+    p_list.resize(maxT,p_list_vec[0]);
+
   vector<vector<At>> Aall;
   vector<vector<Ft>> Fall;
   sample_size_eval(Aall, Fall,n0, m, maxT,p_list, tol);
